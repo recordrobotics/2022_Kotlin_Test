@@ -1,6 +1,5 @@
 plugins {
-	id "java"
-	id "pmd"
+	id "org.jetbrains.kotlin.jvm" version "1.7.10"
 	id "edu.wpi.first.GradleRIO" version "2022.3.1"
 	id "com.diffplug.spotless" version "6.4.2"
 }
@@ -10,21 +9,15 @@ targetCompatibility = JavaVersion.VERSION_11
 
 def ROBOT_MAIN_CLASS = "org.recordrobotics.munchkin.Main"
 
-// PMD config
-pmd {
-	consoleOutput = true
-	ignoreFailures = false
-	ruleSetFiles = files("pmd.xml")
-	ruleSets = []
-}
-
 // Spotless config
 spotless {
-	java {
+	kotlin {
+		ktfmt()
+		ktlint()
+			.userData("disabled_rules": "no-wildcard-imports")
 		trimTrailingWhitespace()
 		indentWithTabs()
 		endWithNewline()
-		removeUnusedImports()
 	}
 }
 
@@ -85,7 +78,7 @@ dependencies {
 	nativeRelease wpi.java.vendor.jniRelease(wpi.platforms.desktop)
 	simulationRelease wpi.sim.enableRelease()
 
-	testImplementation 'junit:junit:4.12'
+	implementation "org.jetbrains.kotlin:kotlin-stdlib"
 }
 
 // Simulation configuration (e.g. environment variables).
