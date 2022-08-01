@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj2.command.Command
 import edu.wpi.first.wpilibj2.command.CommandScheduler
 import edu.wpi.first.wpilibj2.command.Subsystem
 import org.recordrobotics.munchkin.commands.dashboard.DashResetClimbEncoder
-import org.recordrobotics.munchkin.commands.dashboard.DashRunProcedure
+import org.recordrobotics.munchkin.commands.dashboard.DashRunFunction
 import org.recordrobotics.munchkin.commands.group.SeqLiftMid
 import org.recordrobotics.munchkin.commands.manual.*
 import org.recordrobotics.munchkin.control.DoubleControl
@@ -72,11 +72,11 @@ class RobotContainer {
 		tab.add("Reset Climbers Encoder", DashResetClimbEncoder(_climbers))
 		tab.add(
 			"Legacy Control",
-			DashRunProcedure { changeControl { LegacyControl(RobotMap.Control.LEGACY_GAMEPAD) } }
+			DashRunFunction { changeControl { LegacyControl(RobotMap.Control.LEGACY_GAMEPAD) } }
 		)
 		tab.add(
 			"Double Control",
-			DashRunProcedure {
+			DashRunFunction {
 				changeControl {
 					DoubleControl(RobotMap.Control.DOUBLE_GAMEPAD_1, RobotMap.Control.DOUBLE_GAMEPAD_2)
 				}
