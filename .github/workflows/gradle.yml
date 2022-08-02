@@ -1,4 +1,4 @@
-name: Java CI with Gradle
+name: Kotlin CI with Gradle
 
 on:
   push:
@@ -25,7 +25,7 @@ jobs:
     - name: Regular build
       uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
       with:
-        arguments: build -x pmdMain -x pmdTest -x spotlessJavaCheck
+        arguments: build -x spotlessKotlinCheck
   quality:
 
     runs-on: ubuntu-latest
@@ -41,4 +41,4 @@ jobs:
     - name: Code Quality Check
       uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
       with:
-        arguments: pmdMain pmdTest spotlessJavaCheck
+        arguments: spotlessKotlinCheck
